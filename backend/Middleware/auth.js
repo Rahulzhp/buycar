@@ -12,7 +12,6 @@ const authenticate = async (req, res, next) => {
         req.user = decoded; // Store user information in the request object
         console.log("desvbsvsv", decoded)
 
-
         next();
     } catch (err) {
         console.error("Token verification error:", err);

@@ -1,7 +1,6 @@
 const mongoose = require("mongoose")
 
 const ProductSchema = mongoose.Schema({
-    seller: { type: mongoose.Schema.Types.ObjectId, ref: 'caruser' },
     image_url: String,
     title: String,
     year: Number,

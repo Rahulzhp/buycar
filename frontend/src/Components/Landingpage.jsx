@@ -2,6 +2,8 @@ import React from 'react'
 import { Box, Image, Link, Text } from "@chakra-ui/react";
 import "../Styles/Landingpage.css"
 const Landingpage = () => {
+
+    localStorage.setItem("carsdata", "rahul")
     return (
         <Box className="top_section_parent">
             <Box className="top_section_container">
