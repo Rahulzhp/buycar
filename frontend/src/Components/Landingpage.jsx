@@ -11,7 +11,10 @@ const Landingpage = () => {
                     </Text>
                 </Link>
                 <Box>
-                    <Image w={"100%"} src="https://images.contentstack.io/v3/assets/bltdd99f24e8a94d536/blt0e98fd147de5199a/631a53cd10c00a57bb0cd53d/birthday-flowers-hero-fy23-fall.jpg?quality=75&auto=webp&optimize={medium}" />
+                    <Image w={"100%"} src="https://pictures.dealer.com/c/chapmanlancasterfordfd/0237/be3a785e80c018585caad9e9cad08420x.jpg" />
+                </Box>
+                <Box>
+                    <Image src="https://pictures.dealer.com/c/chapmanlancasterfordfd/0335/b4896115eb2fd42a0b1159ce210ed381x.jpg"></Image>
                 </Box>
             </Box>
         </Box>

@@ -3,7 +3,7 @@ const cors = require("cors");
 
 const { connection } = require("./Config/db");
 const { usersRoute } = require("./Routes/userroute")
-
+const { productRoute } = require("./Routes/productroute")
 const { authenticate } = require("./Middleware/auth")
 require('dotenv').config()
 
@@ -24,6 +24,7 @@ app.get("/", (req, res) => {
 
 app.use("/users", usersRoute)
 app.use(authenticate)
+app.use("/cars", productRoute)
 
 
 
