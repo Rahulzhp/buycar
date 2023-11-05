@@ -1,6 +1,7 @@
 const express = require("express")
 
 const { ProductModel } = require("../Model/product")
+const {authenticate}=require("../Middleware/auth")
 
 const productRoute = express.Router()
 
@@ -76,7 +77,7 @@ productRoute.get("/:id", async (req, res) => {
     }
 })
 
-productRoute.post("/", async (req, res) => {
+productRoute.post("/",authenticate, async (req, res) => {
     const payload = req.body;
     try {
         const data = new ProductModel(payload);

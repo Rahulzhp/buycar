@@ -1,6 +1,7 @@
 import React from 'react'
 import { Box, Image, Link, Text } from "@chakra-ui/react";
 import "../Styles/Landingpage.css"
+import Home from './Home';
 const Landingpage = () => {
 
     localStorage.setItem("carsdata", "rahul")
@@ -15,6 +16,7 @@ const Landingpage = () => {
                 <Box>
                     <Image w={"100%"} src="https://pictures.dealer.com/c/chapmanlancasterfordfd/0237/be3a785e80c018585caad9e9cad08420x.jpg" />
                 </Box>
+                <Home />
                 <Box>
                     <Image src="https://pictures.dealer.com/c/chapmanlancasterfordfd/0335/b4896115eb2fd42a0b1159ce210ed381x.jpg"></Image>
                 </Box>

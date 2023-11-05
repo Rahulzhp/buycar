@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
 })
 
 app.use("/users", usersRoute)
-app.use(authenticate)
+
 app.use("/cars", productRoute)
 
 
