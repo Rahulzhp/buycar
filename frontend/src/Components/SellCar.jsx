@@ -202,7 +202,7 @@ const SellCar = () => {
                     <Box margin={"31px 2px 5px 65px"} alignItems={"flex-start"} fontFamily={"LatoGoogle,Lato,LatoWeb,sans-serif;"} color={"#484848"} fontWeight={"semibold"} fontSize={"17px"}>
                         <Heading>Car Collection</Heading>
                     </Box>
-                    <Box margin={"33px 45px 13px 59px"} >
+                    <Box margin={"33px 67px 13px 59px"} >
                         <Button border={"1px solid yellow"} backgroundColor={"orange.600"} color={"white"} onClick={onOpenCreate}>Add More Cars</Button>
                     </Box>
                 </Box>
@@ -251,7 +251,7 @@ const SellCar = () => {
 
                     </SimpleGrid>
                 </Wrap>
-                <Box width={"90%"} margin={"auto"} marginTop={"31px"}>
+                <Box width={"90%"} margin={"auto"} marginTop={"31px"} marginBottom={"11px"}>
                     <Image src="https://pictures.dealer.com/c/chapmanlancasterfordfd/0335/b4896115eb2fd42a0b1159ce210ed381x.jpg"></Image>
                 </Box>
                 <Modal

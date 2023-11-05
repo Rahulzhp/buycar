@@ -30,25 +30,140 @@ const Navbar = () => {
     const CarUser = (localStorage.getItem("userName"))
     console.log(CarUser)
     const handlelogout = () => {
-        localStorage.clear();
+        localStorage.removeItem('Cartoken');
         window.location.reload();
     }
     const handlesignup = (e) => {
         e.preventDefault()
         if (name && email && password) {
+            // const user = {
+            //     name,
+            //     email,
+            //     password,
+
+            // };
+            // axios.post("http://localhost:8080/users/register", user)
+            //     .then((res) => {
+            //         //console.log(res)
+            //         if (res.data = "Signup Successfully") {
+            //             toast({
+            //                 title: "Account created.",
+            //                 description: "Successfully Created your Account",
+            //                 status: "success",
+            //                 position: "top",
+            //                 duration: 3000,
+            //                 isClosable: true,
+            //             });
+            //         } else {
+            //             toast({
+            //                 title: "Error",
+            //                 description: "Something went wrong",
+            //                 status: "error",
+            //                 position: "top",
+            //                 duration: 3000,
+            //                 isClosable: true,
+            //             });
+            //         }
+            //     })
+            // // localStorage.setItem('user', JSON.stringify(user));
+            if (!validateEmail(email)) {
+                toast({
+                    title: 'Error',
+                    description: 'Please enter a valid email address.',
+                    status: 'error',
+                    position: 'top',
+                    duration: 3000,
+                    isClosable: true,
+                });
+            } else if (password.length < 6 || password.length > 12) {
+                toast({
+                    title: 'Error',
+                    description: 'Password must be between 6 and 12 characters.',
+                    status: 'error',
+                    position: 'top',
+                    duration: 3000,
+                    isClosable: true,
+                });
+            } else {
+                const user = {
+                    name,
+                    email,
+                    password,
+                };
+                axios.post('http://localhost:8080/users/register', user)
+                    .then((res) => {
+                        if (res.data === 'Signup Successfully') {
+                            toast({
+                                title: 'Account created.',
+                                description: 'Successfully Created your Account',
+                                status: 'success',
+                                position: 'top',
+                                duration: 3000,
+                                isClosable: true,
+                            });
+
+                        } else {
+                            toast({
+                                title: 'Error',
+                                description: 'Something went wrong',
+                                status: 'error',
+                                position: 'top',
+                                duration: 3000,
+                                isClosable: true,
+                            });
+                        }
+                    });
+            }
+
+            onClose()
+            setTimeout(() => Login(), 1500)
+        }
+        else {
+            toast({
+                title: "Error",
+                description: "Please Enter all the detail",
+                status: "error",
+                position: "top",
+                duration: 3000,
+                isClosable: true,
+            });
+        }
+    }
+    const Login = () => {
+        if (!validateEmail(email)) {
+            toast({
+                title: 'Error',
+                description: 'Please enter a valid email address.',
+                status: 'error',
+                position: 'top',
+                duration: 3000,
+                isClosable: true,
+            });
+        } else if (password.length < 6 || password.length > 12) {
+            toast({
+                title: 'Error',
+                description: 'Password must be between 6 and 12 characters.',
+                status: 'error',
+                position: 'top',
+                duration: 3000,
+                isClosable: true,
+            });
+        } else {
+
+
             const user = {
-                name,
                 email,
                 password,
-
             };
-            axios.post("http://localhost:8080/users/register", user)
+            axios.post("http://localhost:8080/users/login", user)
                 .then((res) => {
-                    //console.log(res)
-                    if (res.data = "Signup Successfully") {
+                    console.log(res)
+                    if (res.data.token) {
+                        localStorage.setItem("Cartoken", res.data.token);
+                        localStorage.setItem("userName", res.data.username);
                         toast({
-                            title: "Account created.",
-                            description: "Successfully Created your Account",
+                            title: `Welcome ${res.data.username}`,
+                            description: "Successfully Logged In",
                             status: "success",
                             position: "top",
                             duration: 3000,
@@ -66,53 +181,14 @@ const Navbar = () => {
                     }
                 })
             // localStorage.setItem('user', JSON.stringify(user));
-
-            onClose()
-            setTimeout(() => Login(), 3000)
-        }
-        else {
-            toast({
-                title: "Error",
-                description: "Please Enter all the detail",
-                status: "error",
-                position: "top",
-                duration: 3000,
-                isClosable: true,
-            });
+            setTimeout(() => window.location.reload(), 1000)
         }
     }
-    const Login = () => {
-        const user = {
-            email,
-            password,
-        };
-        axios.post("http://localhost:8080/users/login", user)
-            .then((res) => {
-                console.log(res)
-                if (res.data.token) {
-                    localStorage.setItem("Cartoken", res.data.token);
-                    localStorage.setItem("userName", res.data.username);
-                    toast({
-                        title: `Welcome ${res.data.username}`,
-                        description: "Successfully Logged In",
-                        status: "success",
-                        position: "top",
-                        duration: 3000,
-                        isClosable: true,
-                    });
-                } else {
-                    toast({
-                        title: "Error",
-                        description: "Something went wrong",
-                        status: "error",
-                        position: "top",
-                        duration: 3000,
-                        isClosable: true,
-                    });
-                }
-            })
-        // localStorage.setItem('user', JSON.stringify(user));
-        setTimeout(() => window.location.reload(), 1000)
+    const HandleallLogout = () => {
+        localStorage.clear()
+        setTimeout(() => window.location.reload(), 300)
+        setTimeout(() => onOpen(), 1000)
+
     }
 
     const handlenav = () => {
@@ -129,6 +205,11 @@ const Navbar = () => {
             });
         }
 
+    }
+    const validateEmail = (email) => {
+        // Simple email validation using regex
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailPattern.test(email);
     }
 
     const handlelogin = () => {
@@ -197,7 +278,7 @@ const Navbar = () => {
                                         Sell Car
                                     </Button>
                                     {
-                                        CarUser ? <Button onClick={handlelogout} mt={{ lg: 1 }} colorScheme="green" size='md'>
+                                        CarToken ? <Button onClick={handlelogout} mt={{ lg: 1 }} colorScheme="green" size='md'>
                                             {CarUser}/Logout
                                         </Button> : <Button onClick={onOpen} mt={{ lg: 1 }} colorScheme="yellow" size='md'>
                                             Login/Register
@@ -218,13 +299,13 @@ const Navbar = () => {
                     <ModalOverlay />
                     <ModalContent>
                         {
-                            CarToken ? <ModalHeader>Login</ModalHeader> : <ModalHeader>Create Account</ModalHeader>
+                            CarUser ? <ModalHeader>Login</ModalHeader> : <ModalHeader>Create Account</ModalHeader>
                         }
 
                         <ModalCloseButton />
                         <ModalBody pb={6}>
                             {
-                                CarToken ? " " : < FormControl isRequired>
+                                CarUser ? " " : < FormControl isRequired>
                                     <FormLabel>Name</FormLabel>
                                     <Input ref={initialRef} value={name}
                                         onChange={(e) => setName(e.target.value)} borderRadius={"21px"} placeholder='Enter your Name' />
@@ -245,14 +326,17 @@ const Navbar = () => {
                         </ModalBody>
                         <ModalFooter>
                             {
-                                CarToken ? <Button onClick={handlelogin} colorScheme='red' mr={3}>
+                                CarUser ? <Button onClick={handlelogin} colorScheme="teal" mr={3}>
                                     Login
                                 </Button> : <Button onClick={handlesignup} colorScheme='red' mr={3}>
                                     Signup
                                 </Button>
                             }
+                            {
+                                CarUser ? <Button colorScheme="red" onClick={HandleallLogout}>Signup</Button> : <Button onClick={onClose}>Cancel</Button>
+                            }
 
-                            <Button onClick={onClose}>Cancel</Button>
+
                         </ModalFooter>
                     </ModalContent>
                 </Modal>

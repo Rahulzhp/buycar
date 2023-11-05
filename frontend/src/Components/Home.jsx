@@ -27,7 +27,14 @@ const Home = () => {
     console.log(data)
     const handleCart = () => {
         if (CarToken) {
-
+            toast({
+                title: `Order Placed`,
+                description: "After 2 Days you will get call",
+                status: "success",
+                position: "top",
+                duration: 3000,
+                isClosable: true,
+            });
         } else {
             toast({
                 title: "Error",

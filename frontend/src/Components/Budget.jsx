@@ -48,6 +48,14 @@ const Budget = () => {
     };
     const handleCart = () => {
         if (CarToken) {
+            toast({
+                title: `Order Placed`,
+                description: "After 2 Days you will get call",
+                status: "success",
+                position: "top",
+                duration: 3000,
+                isClosable: true,
+            });
 
         } else {
             toast({
@@ -67,7 +75,7 @@ const Budget = () => {
                 <Box margin="31px 2px 5px 65px" alignItems="flex-start" fontFamily="LatoGoogle, Lato, LatoWeb, sans-serif" color="#484848" fontWeight="semibold" fontSize="17px">
                     <Heading fontSize="21px">Find The Cars Of Your Choice</Heading>
                 </Box>
-                <Box width="90%" margin="auto" height="59px" backgroundColor="gray" display="flex" justifyContent="space-between" alignItems="center">
+                <Box width="90%" margin="auto" height="59px" backgroundColor="gray" display="flex" justifyContent="space-around" alignItems="center">
                     <Button
                         borderRadius="30px"
                         onClick={() => filterByBudget(0, 500000)}
@@ -120,7 +128,7 @@ const Budget = () => {
                     </Button>
                 </Box>
                 <Wrap justify="center" >
-                    <SimpleGrid w="90%" gap="15px 21px" columns={[2, 4]} >
+                    <SimpleGrid w="90%" gap="15px 21px" columns={[2, 4]} marginTop={"1px"}>
                         {data.map((el) => (
                             <Box key={el._id} w="100%" border={"1px solid grey"} paddingLeft={"13px"}>
                                 <Box cursor={"pointer"} w="81%" m="auto" >
