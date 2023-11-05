@@ -29,16 +29,19 @@ To make this clone I have used HTMl, CSS and JavaScript, ReactJS for front-end a
 
 ## Header Section
 
-<img width="710" alt="image" src="(https://github.com/Rahulzhp/buycar/assets/107567053/088b88cc-eaf5-4942-a89e-e7c5b8c5e728)" />
+<img width="710" alt="image" src="(https://github.com/Rahulzhp/buycar/assets/107567053/9bb9bb85-c146-44b3-84c1-af8884ec4025)" />
 
 ## Footer Section
 
-<img width="710" alt="image" src="(https://github.com/Rahulzhp/buycar/assets/107567053/035610b1-86cd-4b99-a9ff-50cf7acf4b71)" />
+<img width="710" alt="image" src="(https://github.com/Rahulzhp/buycar/assets/107567053/e2d9b386-ea77-4c38-887b-7ba9649c1cf2)" />
 
 
 ## Login/signup Section
 
-<img width="710" alt="image" src="((https://github.com/Rahulzhp/buycar/assets/107567053/e6f6ae0e-dba1-47fa-a247-ce76a82c4366))" />
+<img width="710" alt="image" src="(https://github.com/Rahulzhp/buycar/assets/107567053/32b5facf-7c41-4e9a-8d39-939a8aebc728)" />
+
+
+
 
 
 
