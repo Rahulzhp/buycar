@@ -15,7 +15,7 @@ const Budget = () => {
     const CarToken = (localStorage.getItem("Cartoken"))
     const filterByBudget = (minPrice, maxPrice) => {
         axios
-            .get(`http://localhost:8080/cars/?minPrice=${minPrice}&maxPrice=${maxPrice}`, {
+            .get(`https://dull-tan-piglet.cyclic.app/cars/?minPrice=${minPrice}&maxPrice=${maxPrice}`, {
                 headers: {
                     'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTQ2ODI3ZmI2YTU3OTFiZjQ1ZmQzOTgiLCJpYXQiOjE2OTkxMTk3NTUsImV4cCI6MTY5OTEyMzM1NX0.d4hi-hduHx7ek1fPL_yu0Ovt2JFSh7RPjwn7X30988U',
                 },
@@ -32,7 +32,7 @@ const Budget = () => {
 
     const filterBySpeed = (minSpeed, maxSpeed, range) => {
         axios
-            .get(`http://localhost:8080/cars/speed/${range}`, {
+            .get(`https://dull-tan-piglet.cyclic.app/cars/speed/${range}`, {
                 headers: {
                     'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTQ2ODI3ZmI2YTU3OTFiZjQ1ZmQzOTgiLCJpYXQiOjE2OTkxMTk3NTUsImV4cCI6MTY5OTEyMzM1NX0.d4hi-hduHx7ek1fPL_yu0Ovt2JFSh7RPjwn7X30988U',
                 },

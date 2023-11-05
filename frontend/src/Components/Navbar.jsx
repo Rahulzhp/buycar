@@ -36,36 +36,7 @@ const Navbar = () => {
     const handlesignup = (e) => {
         e.preventDefault()
         if (name && email && password) {
-            // const user = {
-            //     name,
-            //     email,
-            //     password,
 
-            // };
-            // axios.post("http://localhost:8080/users/register", user)
-            //     .then((res) => {
-            //         //console.log(res)
-            //         if (res.data = "Signup Successfully") {
-            //             toast({
-            //                 title: "Account created.",
-            //                 description: "Successfully Created your Account",
-            //                 status: "success",
-            //                 position: "top",
-            //                 duration: 3000,
-            //                 isClosable: true,
-            //             });
-            //         } else {
-            //             toast({
-            //                 title: "Error",
-            //                 description: "Something went wrong",
-            //                 status: "error",
-            //                 position: "top",
-            //                 duration: 3000,
-            //                 isClosable: true,
-            //             });
-            //         }
-            //     })
-            // // localStorage.setItem('user', JSON.stringify(user));
             if (!validateEmail(email)) {
                 toast({
                     title: 'Error',
@@ -90,7 +61,7 @@ const Navbar = () => {
                     email,
                     password,
                 };
-                axios.post('http://localhost:8080/users/register', user)
+                axios.post('https://dull-tan-piglet.cyclic.app/users/register', user)
                     .then((res) => {
                         if (res.data === 'Signup Successfully') {
                             toast({
@@ -155,7 +126,7 @@ const Navbar = () => {
                 email,
                 password,
             };
-            axios.post("http://localhost:8080/users/login", user)
+            axios.post("https://dull-tan-piglet.cyclic.app/users/login", user)
                 .then((res) => {
                     console.log(res)
                     if (res.data.token) {
@@ -262,7 +233,7 @@ const Navbar = () => {
                                 <Center><Text color={'#4C4C4C'} pt={{ lg: 3 }}> <b>USED CARS</b></Text></Center>
                             </Box>
                             <Box w={{ lg: '100%' }} ml={{ lg: '-70%' }} h={{ lg: '50px' }} >
-                                <Center><Text color={'#4C4C4C'} pt={{ lg: 3 }}> <b>REVIEWS & NEWS</b></Text></Center>
+                                <Link to="/profile"><Center><Text color={'#4C4C4C'} pt={{ lg: 3 }}> <b>REVIEWS & NEWS</b></Text></Center></Link>
                             </Box>
                             <Box w={{ lg: '100%' }} h={{ lg: '50px' }} ml={{ lg: '-25%' }} >
                                 <InputGroup >

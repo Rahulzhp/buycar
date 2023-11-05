@@ -42,7 +42,7 @@ const SellCar = () => {
 
     }, [])
     const Getcar = () => {
-        axios.get("http://localhost:8080/cars", {
+        axios.get("https://dull-tan-piglet.cyclic.app/cars", {
             headers: {
                 'Authorization': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTQ2ODI3ZmI2YTU3OTFiZjQ1ZmQzOTgiLCJpYXQiOjE2OTkxMTk3NTUsImV4cCI6MTY5OTEyMzM1NX0.d4hi-hduHx7ek1fPL_yu0Ovt2JFSh7RPjwn7X30988U"
             }
@@ -65,7 +65,7 @@ const SellCar = () => {
                 max_speed
 
             };
-            axios.post("http://localhost:8080/cars", cardata, {
+            axios.post("https://dull-tan-piglet.cyclic.app/cars", cardata, {
                 headers: {
                     'Authorization': CarToken
                 }
@@ -106,7 +106,7 @@ const SellCar = () => {
     }
 
     const handleDelete = (id) => {
-        axios.delete(`http://localhost:8080/cars/${id}`, {
+        axios.delete(`https://dull-tan-piglet.cyclic.app/cars/${id}`, {
             headers: {
                 'Authorization': CarToken
             }
@@ -130,7 +130,7 @@ const SellCar = () => {
 
     const handleEdit = () => {
         if (editId) {
-            axios.get(`http://localhost:8080/cars/${editId}`, {
+            axios.get(`https://dull-tan-piglet.cyclic.app/cars/${editId}`, {
                 headers: {
                     'Authorization': CarToken
                 }
@@ -149,7 +149,7 @@ const SellCar = () => {
                             max_speed: max_speed || res.data.max_speed
 
                         };
-                        axios.patch(`http://localhost:8080/cars/${editId}`, cardata, {
+                        axios.patch(`https://dull-tan-piglet.cyclic.app/cars/${editId}`, cardata, {
                             headers: {
                                 'Authorization': CarToken
                             }
