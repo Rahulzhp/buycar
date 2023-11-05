@@ -1,15 +1,15 @@
 const express = require("express")
 
 const { ProductModel } = require("../Model/product")
-const {authenticate}=require("../Middleware/auth")
+const { authenticate } = require("../Middleware/auth")
 
 const productRoute = express.Router()
 
 
-const PAGE_SIZE = 5;
+const PAGE_SIZE = 12;
 
 productRoute.get('/', async (req, res) => {
-    const { search, page = 1 } = req.query;
+    const { search, page = 1, minPrice, maxPrice } = req.query;
     const skip = (page - 1) * PAGE_SIZE;
 
     try {
@@ -33,6 +33,9 @@ productRoute.get('/', async (req, res) => {
                 }));
             }
         }
+        if (minPrice && maxPrice) {
+            filter.price = { $gte: parseFloat(minPrice), $lte: parseFloat(maxPrice) };
+        }
 
         const count = await ProductModel.countDocuments(filter);
         const totalPages = Math.ceil(count / PAGE_SIZE);
@@ -46,7 +49,30 @@ productRoute.get('/', async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 });
-//Get SingleProduct
+
+// Route for cars with max_speed under 200
+productRoute.get('/speed/under-200', async (req, res) => {
+    try {
+        const cars = await ProductModel.find({ max_speed: { $lt: 200 } });
+
+        res.status(200).json(cars);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+// Route for cars with max_speed above 200
+productRoute.get('/speed/above-200', async (req, res) => {
+    try {
+        const cars = await ProductModel.find({ max_speed: { $gte: 200 } });
+
+        res.status(200).json(cars);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+
 
 // Sort Products by Price
 productRoute.get('/sort', async (req, res) => {
@@ -77,7 +103,7 @@ productRoute.get("/:id", async (req, res) => {
     }
 })
 
-productRoute.post("/",authenticate, async (req, res) => {
+productRoute.post("/", authenticate, async (req, res) => {
     const payload = req.body;
     try {
         const data = new ProductModel(payload);
@@ -88,25 +114,25 @@ productRoute.post("/",authenticate, async (req, res) => {
     }
 })
 
-productRoute.patch('/:id', async (req, res) => {
+productRoute.patch('/:id', authenticate, async (req, res) => {
     const productId = req.params.id;
     const updatedData = req.body;
 
     try {
 
-        const updatedProduct = await ProductModel.findByIdAndUpdate(productId, updatedData, { new: true });
+        const updatedProduct = await ProductModel.findByIdAndUpdate(productId, updatedData);
 
         if (!updatedProduct) {
             return res.status(404).json({ message: 'Product not found' });
         }
 
-        res.status(200).json(updatedProduct);
+        res.send({ msg: "Edited" });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 });
 
-productRoute.delete('/:id', async (req, res) => {
+productRoute.delete('/:id', authenticate, async (req, res) => {
     const productId = req.params.id;
 
     try {
@@ -117,7 +143,7 @@ productRoute.delete('/:id', async (req, res) => {
             return res.status(404).json({ message: 'Product not found' });
         }
 
-        res.status(204).send({ msg: "deleted" });
+        res.send({ msg: "deleted" });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }

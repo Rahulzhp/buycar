@@ -1,0 +1,77 @@
+.footer {
+    background-color: black;
+    background-repeat: no-repeat;
+    min-height: 170px;
+    background-position: 50%;
+    background-size: cover;
+    position: relative;
+}
+
+.footerItem {
+    display: flex;
+    width: 97%;
+    margin: auto;
+
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: white;
+    padding-top: 111px;
+}
+
+.footerL {
+    padding: 0px;
+    width: 33.3%;
+
+}
+
+.footerL>h6 {
+    font-size: 14px;
+}
+
+.footerL>p {
+    font-size: 9px;
+    letter-spacing: 0.3px;
+    opacity: .9;
+    color: hsla(24, 20%, 95%, .7);
+}
+
+.footerM {
+    padding: 0px;
+    width: 33.3%;
+    display: flex;
+    justify-content: center;
+}
+
+.footerM>div>h6 {
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    padding-right: 15px;
+}
+
+.footerMimg>div {
+    display: flex;
+
+    margin: auto;
+    gap: 7px;
+
+}
+
+.footerMimg>div>img {
+    width: 20%;
+    margin: auto;
+
+}
+
+.footerR {
+    padding: 0px;
+    width: 33.3%;
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.footerR>h6 {
+    font-size: 14px;
+    letter-spacing: 0.3px;
+    padding-top: 9px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

@@ -47,10 +47,8 @@ usersRoute.post("/login", async (req, res) => {
         if (user) {
             bcrypt.compare(password, user.password, (err, result) => {
                 if (result) {
-                    const token = jwt.sign({ userId: user._id }, "cars", {
-                        expiresIn: "1h", // Token expiration time (e.g., 1 hour)
-                    });
-                    res.status(200).json({ success: "Login successful", token });
+                    const token = jwt.sign({ userId: user._id }, "cars");
+                    res.send({ "token": token, "username": user.name });
                 } else {
                     res.send("Wrong Credentials")
 

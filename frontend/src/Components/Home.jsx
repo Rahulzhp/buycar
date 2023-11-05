@@ -4,13 +4,15 @@ import axios from "axios";
 import {
     Box, Text, Image, Button, Wrap, SimpleGrid, useToast, Heading
 } from "@chakra-ui/react";
-import { IoIosHeart } from "react-icons/io";
+
 import Landingpage from './Landingpage';
+import Budget from './Budget';
 
 
 const Home = () => {
-
+    const toast = useToast()
     const [data, setData] = useState([]);
+    const CarToken = (localStorage.getItem("Cartoken"))
 
     useEffect(() => {
         axios.get("http://localhost:8080/cars", {
@@ -23,10 +25,24 @@ const Home = () => {
     }, [])
 
     console.log(data)
+    const handleCart = () => {
+        if (CarToken) {
+
+        } else {
+            toast({
+                title: "Error",
+                description: "Please Login First",
+                status: "error",
+                position: "top",
+                duration: 3000,
+                isClosable: true,
+            });
+        }
+    }
     return (
         <div>
-
-            <Box margin={"21px 2px 5px 65px"} alignItems={"flex-start"} fontFamily={"LatoGoogle,Lato,LatoWeb,sans-serif;"} color={"#484848"} fontWeight={"semibold"}>
+            <Landingpage />
+            <Box margin={"21px 2px 5px 65px"} alignItems={"flex-start"} fontFamily={"LatoGoogle,Lato,LatoWeb,sans-serif;"} color={"#484848"} fontWeight={"semibold"} fontSize={"17px"}>
                 <Heading>Featured Cars</Heading>
             </Box>
             <Wrap justify="center" >
@@ -57,8 +73,8 @@ const Home = () => {
                                 </Box>
                                 <Box display="flex" m="auto" paddingTop={"7px"} paddingBottom={"5px"}>
 
-                                    <Button _hover={{ bg: "#92bcb5" }} backgroundColor={"pink.300"} mr="5px" size='sm'>
-                                        Add to Cart
+                                    <Button onClick={handleCart} color={"teal.700"} _hover={{ bg: "#92bcb5" }} backgroundColor={"white"} mr="5px" size='sm' border={"1px solid teal"}>
+                                        Buy Car
                                     </Button>
                                     {/* <Button _hover={{ bg: "#92bcb5" }} variant="outline" color={"pink.300"} size='sm'>
                                         <IoIosHeart size="24px" ></IoIosHeart>
@@ -70,6 +86,10 @@ const Home = () => {
 
                 </SimpleGrid>
             </Wrap>
+            <Budget />
+            <Box width={"91%"} margin={"auto"} marginTop={"31px"}>
+                <Image src="https://pictures.dealer.com/c/chapmanlancasterfordfd/0335/b4896115eb2fd42a0b1159ce210ed381x.jpg"></Image>
+            </Box>
         </div>
     )
 }
