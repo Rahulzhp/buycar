@@ -93,9 +93,12 @@ const Home = () => {
 
                 </SimpleGrid>
             </Wrap>
+            <Box width={"90%"} margin={"auto"} marginTop={"17px"}>
+                <Image src="https://di-uploads-development.dealerinspire.com/dibrandhublandrover/uploads/2018/08/LR-Page-Banner-DI-1.jpg" />
+            </Box>
             <Budget />
-            <Box width={"91%"} margin={"auto"} marginTop={"31px"}>
-                <Image src="https://pictures.dealer.com/c/chapmanlancasterfordfd/0335/b4896115eb2fd42a0b1159ce210ed381x.jpg"></Image>
+            <Box width={"90%"} margin={"auto"} marginTop={"31px"}>
+                <Image src="https://pictures.dealer.com/c/chapmanlancasterfordfd/0237/be3a785e80c018585caad9e9cad08420x.jpg"></Image>
             </Box>
         </div>
     )
