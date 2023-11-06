@@ -4,7 +4,7 @@
 ![Buycars project](https://github.com/Rahulzhp/buycar/assets/107567053/c0efcc32-6175-4eb4-90e4-86ca8a927374)
 # Clone of BuyCars.com
 
-Deployed Link - https://652197788905831d531402a3--resplendent-bublanina-d03fe8.netlify.app/
+Deployed Link - https://654877404311865c502dfa1d--fanciful-pie-f5a100.netlify.app/
 
 
 
