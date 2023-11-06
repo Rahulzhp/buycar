@@ -198,8 +198,11 @@ const SellCar = () => {
     return (
         <>{
             CarToken ? <div>
+                <Box textAlign={"center"} marginTop={"29px"}>
+                    <Heading borderBottom={"2px solid orange"} width={"13%"} margin={"auto"}>Car Delars</Heading>
+                </Box>
                 <Box display={"flex"} justifyContent={"space-between"}>
-                    <Box margin={"31px 2px 5px 65px"} alignItems={"flex-start"} fontFamily={"LatoGoogle,Lato,LatoWeb,sans-serif;"} color={"#484848"} fontWeight={"semibold"} fontSize={"17px"}>
+                    <Box margin={"13px 2px 5px 65px"} alignItems={"flex-start"} fontFamily={"LatoGoogle,Lato,LatoWeb,sans-serif;"} color={"#484848"} fontWeight={"semibold"} fontSize={"15px"}>
                         <Heading>Car Collection</Heading>
                     </Box>
                     <Box margin={"33px 67px 13px 59px"} >

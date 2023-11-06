@@ -246,7 +246,7 @@ const Navbar = () => {
                             <Box w={{ lg: '100%' }} h={{ lg: '50px' }} marginRight={"30px"}>
                                 <Flex gap={9} >
                                     <Button onClick={handlenav} mt={{ lg: 1 }} colorScheme="yellow" size='md'>
-                                        Sell Car
+                                        Car Dealer
                                     </Button>
                                     {
                                         CarToken ? <Button onClick={handlelogout} mt={{ lg: 1 }} colorScheme="green" size='md'>
