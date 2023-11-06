@@ -29,15 +29,18 @@ To make this clone I have used HTMl, CSS and JavaScript, ReactJS for front-end a
 
 ## Header Section
 
-(https://github.com/Rahulzhp/photos/assets/107567053/7b0825f4-5b08-44e8-8d28-6da3cdd95296)
+![Buycars project](https://github.com/Rahulzhp/photos/assets/107567053/7b0825f4-5b08-44e8-8d28-6da3cdd95296)
+
 
 ## Filter Section
+![Buycars project](https://github.com/Rahulzhp/photos/assets/107567053/5ec5bf9c-8c28-487c-aea8-006cbd16112c)
 
-(https://github.com/Rahulzhp/photos/assets/107567053/5ec5bf9c-8c28-487c-aea8-006cbd16112c)
 
 
 ## Login/signup Section
-(https://github.com/Rahulzhp/buycar/assets/107567053/e9eca471-393a-4238-b7fb-b2385467aa2d)
+
+![Buycars project](https://github.com/Rahulzhp/buycar/assets/107567053/e9eca471-393a-4238-b7fb-b2385467aa2d)
+
 
 
 
