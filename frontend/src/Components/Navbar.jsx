@@ -72,6 +72,7 @@ const Navbar = () => {
                                 duration: 3000,
                                 isClosable: true,
                             });
+                            setTimeout(() => Login(), 1000)
 
                         } else {
                             toast({
@@ -87,7 +88,6 @@ const Navbar = () => {
             }
 
             onClose()
-            setTimeout(() => Login(), 1500)
         }
         else {
             toast({

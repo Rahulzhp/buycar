@@ -29,6 +29,7 @@ const SellCar = () => {
 
     const [editId, seteditId] = useState("")
     const [title, settitle] = useState("")
+    const [userID, setuserID] = useState("")
     const [image_url, setimage_url] = useState("")
     const [year, setyear] = useState(0)
     const [price, setprice] = useState(0)
@@ -59,11 +60,17 @@ const SellCar = () => {
                 color,
                 year,
                 mileage,
-                max_speed
+                max_speed,
+                userID
 
             };
-            axios.post("https://dull-tan-piglet.cyclic.app/cars", cardata)
+            axios.post("https://dull-tan-piglet.cyclic.app/cars", cardata, {
+                headers: {
+                    'Authorization': CarToken
+                }
+            })
                 .then((res) => {
+                    console.log("adedecart to van", res)
                     toast({
                         title: "Car Details Added",
                         description: "Car Details added Successfully",
@@ -83,7 +90,7 @@ const SellCar = () => {
                 })
             Getcar()
             onCloseCreate()
-            Getcar()
+            setTimeout(() => Getcar(), 900)
         }
         else {
             toast({
@@ -115,6 +122,7 @@ const SellCar = () => {
                         duration: 3000,
                         isClosable: true,
                     });
+                    Getcar()
                 } else {
                     toast({
                         title: "Error",
