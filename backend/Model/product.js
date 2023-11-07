@@ -8,6 +8,7 @@ const ProductSchema = mongoose.Schema({
     color: String,
     mileage: Number,
     max_speed: Number,
+    userID: { type: String }
 
 })
 const ProductModel = mongoose.model("product", ProductSchema)

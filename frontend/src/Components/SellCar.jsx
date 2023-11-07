@@ -17,6 +17,7 @@ import {
     AlertTitle,
     AlertDescription,
 } from '@chakra-ui/react';
+import Login from './Login';
 
 const SellCar = () => {
 
@@ -42,11 +43,7 @@ const SellCar = () => {
 
     }, [])
     const Getcar = () => {
-        axios.get("https://dull-tan-piglet.cyclic.app/cars", {
-            headers: {
-                'Authorization': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTQ2ODI3ZmI2YTU3OTFiZjQ1ZmQzOTgiLCJpYXQiOjE2OTkxMTk3NTUsImV4cCI6MTY5OTEyMzM1NX0.d4hi-hduHx7ek1fPL_yu0Ovt2JFSh7RPjwn7X30988U"
-            }
-        })
+        axios.get("https://dull-tan-piglet.cyclic.app/cars")
             .then((res) => setData(res.data.data))
             .catch((er) => console.log(er))
     }
@@ -65,11 +62,7 @@ const SellCar = () => {
                 max_speed
 
             };
-            axios.post("https://dull-tan-piglet.cyclic.app/cars", cardata, {
-                headers: {
-                    'Authorization': CarToken
-                }
-            })
+            axios.post("https://dull-tan-piglet.cyclic.app/cars", cardata)
                 .then((res) => {
                     toast({
                         title: "Car Details Added",
@@ -113,10 +106,19 @@ const SellCar = () => {
         })
             .then((res) => {
                 console.log(res)
-                if (res.data.msg == "deleted") {
+                if (res.data.msg == "Item Deleted") {
                     toast({
                         title: "Deleted",
                         description: "Item Deleted from DataBase",
+                        status: "error",
+                        position: "top",
+                        duration: 3000,
+                        isClosable: true,
+                    });
+                } else {
+                    toast({
+                        title: "Error",
+                        description: "You are not Authorize",
                         status: "error",
                         position: "top",
                         duration: 3000,
@@ -156,11 +158,21 @@ const SellCar = () => {
                         })
                             .then((res) => {
                                 console.log(res)
-                                if (res.data.msg == "Edited") {
+                                if (res.data.msg == "Item Edited") {
                                     toast({
                                         title: "Item Edited",
                                         description: "Item Edit Successfully from DataBase",
                                         status: "success",
+                                        position: "top",
+                                        duration: 3000,
+                                        isClosable: true,
+                                    });
+                                }
+                                else {
+                                    toast({
+                                        title: "Error",
+                                        description: "You are not Authorize",
+                                        status: "error",
                                         position: "top",
                                         duration: 3000,
                                         isClosable: true,
@@ -181,7 +193,7 @@ const SellCar = () => {
                     else {
                         toast({
                             title: "Error",
-                            description: "Item Error",
+                            description: "You are not Authorize",
                             status: "error",
                             position: "top",
                             duration: 3000,
@@ -359,13 +371,7 @@ const SellCar = () => {
                         </ModalFooter>
                     </ModalContent>
                 </Modal>
-            </div > : <Box h={"530px"}>
-                <Alert status='error' marginTop={"31px"} height={"51px"}>
-                    <AlertIcon />
-                    <AlertTitle>You Have loged Out!</AlertTitle>
-                    <AlertDescription>Please Login To visit this Page.</AlertDescription>
-                </Alert>
-            </Box>}
+            </div > : <Login />}
         </>
 
     )

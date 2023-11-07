@@ -15,7 +15,7 @@ usersRoute.post("/register", async (req, res) => {
     const { name, email, password } = req.body;
     try {
         let existingUser = await UserModel.findOne({ email })
-        console.log(existingUser)
+
         if (existingUser) {
             res.send(`User with Email Id ${email} already exist`)
         }
@@ -34,7 +34,7 @@ usersRoute.post("/register", async (req, res) => {
 
         }
     } catch (e) {
-        console.log(e.message)
+
         res.send(e.message)
     }
 })
@@ -47,8 +47,8 @@ usersRoute.post("/login", async (req, res) => {
         if (user) {
             bcrypt.compare(password, user.password, (err, result) => {
                 if (result) {
-                    const token = jwt.sign({ userId: user._id }, "cars");
-                    res.send({ "token": token, "username": user.name });
+                    const token = jwt.sign({ userID: user._id }, "cars");
+                    res.send({ "token": token, "username": user.name, "userID": user._id });
                 } else {
                     res.send("Wrong Credentials")
 

@@ -80,7 +80,7 @@ productRoute.get('/sort', async (req, res) => {
 
     try {
         const sortOrder = order === 'desc' ? -1 : 1;
-        const sortField = sort || 'price'; // Default to sorting by price if no field is specified
+        const sortField = sort || 'price';
 
         const sortedProducts = await ProductModel.find({})
             .sort({ [sortField]: sortOrder });
@@ -104,9 +104,10 @@ productRoute.get("/:id", async (req, res) => {
 })
 
 productRoute.post("/", authenticate, async (req, res) => {
-    const payload = req.body;
+    const updated = req.body
+
     try {
-        const data = new ProductModel(payload);
+        const data = new ProductModel(updated);
         await data.save();
         res.send(data);
     } catch (err) {
@@ -117,35 +118,59 @@ productRoute.post("/", authenticate, async (req, res) => {
 productRoute.patch('/:id', authenticate, async (req, res) => {
     const productId = req.params.id;
     const updatedData = req.body;
-
+    let logger_userID = req.body.userID;
     try {
+        let Product = await ProductModel.findById(productId)
 
-        const updatedProduct = await ProductModel.findByIdAndUpdate(productId, updatedData);
-
-        if (!updatedProduct) {
-            return res.status(404).json({ message: 'Product not found' });
+        if (Product) {
+            let product_userID = Product.userID;
+            console.log(product_userID)
+            if (logger_userID === product_userID) {
+                let EditedProduct = await ProductModel.findByIdAndUpdate(productId, updatedData)
+                res.send({ msg: "Item Edited" })
+            }
+            else {
+                res.send("You have Not authorize")
+            }
+        }
+        else {
+            res.send("Please refresh page or Product does not exist")
         }
 
-        res.send({ msg: "Edited" });
-    } catch (err) {
-        res.status(500).json({ error: err.message });
+
+    } catch (e) {
+        res.send(e.message)
     }
+
+
 });
 
 productRoute.delete('/:id', authenticate, async (req, res) => {
-    const productId = req.params.id;
+    let id = req.params.id
+    let logger_userID = req.body.userID;
+    console.log(logger_userID)
 
     try {
+        let Product = await ProductModel.findById(id)
 
-        const deletedProduct = await ProductModel.findByIdAndDelete(productId);
-
-        if (!deletedProduct) {
-            return res.status(404).json({ message: 'Product not found' });
+        if (Product) {
+            let product_userID = Product.userID;
+            console.log(product_userID)
+            if (logger_userID === product_userID) {
+                let deleteProduct = await ProductModel.findByIdAndDelete(id)
+                res.send({ msg: "Item Deleted" })
+            }
+            else {
+                res.send("You have Not authorize")
+            }
+        }
+        else {
+            res.send("Already deleted this item ,Please refresh page or Product does not exist")
         }
 
-        res.send({ msg: "deleted" });
-    } catch (err) {
-        res.status(500).json({ error: err.message });
+
+    } catch (e) {
+        res.send(e.message)
     }
 });
 

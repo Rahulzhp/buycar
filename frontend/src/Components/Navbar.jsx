@@ -184,16 +184,17 @@ const Navbar = () => {
     }
 
     const handlelogin = () => {
+
         const user = {
             email,
             password,
         };
-        axios.post("http://localhost:8080/users/login", user)
+        axios.post("https://dull-tan-piglet.cyclic.app/users/login", user)
             .then((res) => {
                 console.log(res)
                 if (res.data.token) {
                     localStorage.setItem("Cartoken", res.data.token);
-                    localStorage.setItem("userName", res.data.username);
+
                     toast({
                         title: `Welcome ${res.data.username}`,
                         description: "Successfully Logged In",
@@ -202,10 +203,11 @@ const Navbar = () => {
                         duration: 3000,
                         isClosable: true,
                     });
+                    navigate("/")
                 } else {
                     toast({
                         title: "Error",
-                        description: "Something went wrong",
+                        description: "Wrong Credential",
                         status: "error",
                         position: "top",
                         duration: 3000,
@@ -213,7 +215,7 @@ const Navbar = () => {
                     });
                 }
             })
-        // localStorage.setItem('user', JSON.stringify(user));
+
         setTimeout(() => window.location.reload(), 1000)
     }
 

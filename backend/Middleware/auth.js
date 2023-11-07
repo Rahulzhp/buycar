@@ -1,22 +1,30 @@
 const jwt = require("jsonwebtoken")
 const key = "cars"
 const authenticate = async (req, res, next) => {
-    const token = req.headers.authorization;
-
+   
+    let token = req.headers.authorization
+    // console.log({token});
+    // res.send(token)
     if (!token) {
-        return res.status(401).json({ error: "Authentication token is missing" });
+        res.send("Token is Missing Please Login First")
+    }
+    else {
+        try {
+            let verification = jwt.verify(token, "cars")
+            if (verification) {
+                // res.send(verification)
+                console.log("verification", verification)
+                req.body.userID = verification.userId
+                next()
+            } else {
+                res.send("Please Login First")
+            }
+        } catch (e) {
+            res.send(e.message)
+        }
+
     }
 
-    try {
-        const decoded = jwt.verify(token, "cars"); // Replace with your secret key
-        req.user = decoded; // Store user information in the request object
-        console.log("desvbsvsv", decoded)
-
-        next();
-    } catch (err) {
-        console.error("Token verification error:", err);
-        return res.status(401).json({ error: "Invalid token or token has expired" });
-    }
 }
 module.exports = {
     authenticate
